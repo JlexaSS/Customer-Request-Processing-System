@@ -31,6 +31,6 @@ public class SolutionService {
     }
 
     public String getSolution(String type){
-        return solutionRepository.getSolution(type);
+        return new Gson().toJson(solutionRepository.getSolution(type));
     }
 }
