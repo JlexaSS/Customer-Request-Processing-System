@@ -17,4 +17,9 @@ public class RequestController {
     public String getListTypes(){
         return solutionService.getTypes();
     }
+
+    @GetMapping("/getsolution")
+    public String getSolution(String type){
+        return solutionService.getSolution(type);
+    }
 }

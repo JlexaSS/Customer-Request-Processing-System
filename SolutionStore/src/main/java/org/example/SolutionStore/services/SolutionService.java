@@ -29,4 +29,8 @@ public class SolutionService {
         Map<String, String> types = solutionRepository.getTypes().stream().collect(Collectors.toMap(x -> x.split(",")[0], x -> x.split(",")[1]));
         return new Gson().toJson(types);
     }
+
+    public String getSolution(String type){
+        return solutionRepository.getSolution(type);
+    }
 }

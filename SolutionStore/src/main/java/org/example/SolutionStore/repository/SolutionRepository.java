@@ -11,4 +11,7 @@ public interface SolutionRepository extends JpaRepository<Solution, Long> {
 
     @Query("select type, typename from Solution")
     List<String> getTypes();
+
+    @Query("Select solution from Solution where type = ?1")
+    String getSolution(String type);
 }
