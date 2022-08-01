@@ -1,7 +1,7 @@
 package org.example.ProcessingSystem.controllers;
 
 import org.example.ProcessingSystem.model.Client;
-import org.example.ProcessingSystem.model.Usr;
+import org.example.ProcessingSystem.model.User;
 import org.example.ProcessingSystem.services.ClientService;
 import org.example.ProcessingSystem.services.RequestService;
 import org.example.ProcessingSystem.services.UsrService;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.IOException;
-import java.util.Map;
 
 @Controller
 public class MainController {
@@ -34,7 +33,7 @@ public class MainController {
     }
 
     @PostMapping
-    public String addNewRequest(Client client, Usr user, String type, Model model) throws IOException {
+    public String addNewRequest(Client client, User user, String type, Model model) throws IOException {
         model.addAttribute("solution", requestService.addNewRequest(client, user, type));
         return "solution";
     }

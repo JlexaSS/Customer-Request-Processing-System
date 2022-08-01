@@ -12,8 +12,8 @@
             <option value="${client.getId()}">${client.getFirstName()}</option>
         </#list>
     </select>
-    <label for="usr">Пользователь</label>
-    <select name="usr">
+    <label for="user">Пользователь</label>
+    <select name="user">
         <#list users as user>
             <option value="${user.getId()}">${user.getFirstName()}</option>
         </#list>

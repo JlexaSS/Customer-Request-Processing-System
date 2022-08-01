@@ -1,6 +1,6 @@
 package org.example.ProcessingSystem.services;
 
-import org.example.ProcessingSystem.model.Usr;
+import org.example.ProcessingSystem.model.User;
 import org.example.ProcessingSystem.repository.UsrRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ public class UsrService {
         this.usrRepository = usrRepository;
     }
 
-    public List<Usr> getUsers(){
+    public List<User> getUsers(){
         return usrRepository.findAll();
     }
 }

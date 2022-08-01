@@ -34,7 +34,7 @@ public class Request {
     @NonNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private Usr usr;
+    private User user;
 
     @NonNull
     private String type;
