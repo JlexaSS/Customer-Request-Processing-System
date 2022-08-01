@@ -2,9 +2,11 @@ package org.example.ProcessingSystem.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.example.ProcessingSystem.enums.StatusEnums;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,34 +19,30 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NonNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;
 
+    @NonNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private Usr usr;
 
-    @Column(nullable = false)
+    @NonNull
     private String type;
 
-    @Column(nullable = false)
-    private LocalDateTime date;
+    @NonNull
+    private LocalDateTime date = LocalDateTime.now();
 
-    @Column(nullable = false)
-    private String status;
+    @NonNull
+    private String status = StatusEnums.PROCESS.getStatus();
 
-    public Request(Client client, Usr usr, String type){
-        this.client = client;
-        this.usr = usr;
-        this.date = LocalDateTime.now();
-        this.status = "в обработке";
-        this.type = type;
-    }
 }
