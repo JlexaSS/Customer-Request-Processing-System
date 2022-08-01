@@ -1,4 +1,4 @@
-package org.example.ProcessingSystem.model;
+package org.example.processingsystem.model;
 
 import lombok.Getter;
 import lombok.NonNull;

@@ -1,4 +1,4 @@
-package org.example.SolutionStore.model;
+package org.example.solutionstore.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

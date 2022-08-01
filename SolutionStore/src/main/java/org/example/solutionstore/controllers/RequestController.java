@@ -1,6 +1,6 @@
-package org.example.SolutionStore.controllers;
+package org.example.solutionstore.controllers;
 
-import org.example.SolutionStore.services.SolutionService;
+import org.example.solutionstore.services.SolutionService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

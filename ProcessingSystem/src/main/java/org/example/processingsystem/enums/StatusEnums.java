@@ -1,4 +1,4 @@
-package org.example.ProcessingSystem.enums;
+package org.example.processingsystem.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
-package org.example.ProcessingSystem.services;
+package org.example.processingsystem.services;
 
-import org.example.ProcessingSystem.model.Client;
-import org.example.ProcessingSystem.repository.ClientRepository;
+import org.example.processingsystem.model.Client;
+import org.example.processingsystem.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

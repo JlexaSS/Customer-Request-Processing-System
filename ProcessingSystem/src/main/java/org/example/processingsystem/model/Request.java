@@ -1,11 +1,11 @@
-package org.example.ProcessingSystem.model;
+package org.example.processingsystem.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.example.ProcessingSystem.enums.StatusEnums;
+import org.example.processingsystem.enums.StatusEnums;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

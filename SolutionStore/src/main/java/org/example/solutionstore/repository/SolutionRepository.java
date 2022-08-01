@@ -1,6 +1,6 @@
-package org.example.SolutionStore.repository;
+package org.example.solutionstore.repository;
 
-import org.example.SolutionStore.model.Solution;
+import org.example.solutionstore.model.Solution;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

@@ -1,11 +1,11 @@
-package org.example.SolutionStore;
+package org.example.processingsystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SolutionStoreApplication {
+public class ProcessingSystemApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SolutionStoreApplication.class, args);
+        SpringApplication.run(ProcessingSystemApplication.class, args);
     }
 }

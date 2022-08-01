@@ -1,11 +1,10 @@
-package org.example.SolutionStore.services;
+package org.example.solutionstore.services;
 
 import com.google.gson.Gson;
-import org.example.SolutionStore.model.Solution;
-import org.example.SolutionStore.repository.SolutionRepository;
+import org.example.solutionstore.model.Solution;
+import org.example.solutionstore.repository.SolutionRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 

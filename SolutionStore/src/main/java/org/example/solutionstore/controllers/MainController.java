@@ -1,7 +1,6 @@
-package org.example.SolutionStore.controllers;
+package org.example.solutionstore.controllers;
 
-import org.example.SolutionStore.model.Solution;
-import org.example.SolutionStore.services.SolutionService;
+import org.example.solutionstore.services.SolutionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

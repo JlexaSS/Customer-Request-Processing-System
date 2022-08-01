@@ -1,11 +1,11 @@
-package org.example.ProcessingSystem.services;
+package org.example.processingsystem.services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.ProcessingSystem.model.Client;
-import org.example.ProcessingSystem.model.Request;
-import org.example.ProcessingSystem.model.User;
-import org.example.ProcessingSystem.repository.RequestRepository;
+import org.example.processingsystem.model.Client;
+import org.example.processingsystem.model.Request;
+import org.example.processingsystem.model.User;
+import org.example.processingsystem.repository.RequestRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

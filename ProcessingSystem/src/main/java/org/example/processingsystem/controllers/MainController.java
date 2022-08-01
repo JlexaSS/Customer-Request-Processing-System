@@ -1,10 +1,10 @@
-package org.example.ProcessingSystem.controllers;
+package org.example.processingsystem.controllers;
 
-import org.example.ProcessingSystem.model.Client;
-import org.example.ProcessingSystem.model.User;
-import org.example.ProcessingSystem.services.ClientService;
-import org.example.ProcessingSystem.services.RequestService;
-import org.example.ProcessingSystem.services.UsrService;
+import org.example.processingsystem.model.Client;
+import org.example.processingsystem.model.User;
+import org.example.processingsystem.services.ClientService;
+import org.example.processingsystem.services.RequestService;
+import org.example.processingsystem.services.UsrService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
