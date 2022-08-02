@@ -51,4 +51,9 @@ public class SolutionRestController {
     public ResponseEntity<Map<String, String>> getTypes() {
         return solutionService.getTypes();
     }
+
+    @RequestMapping(value = "/solution/{type}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> getClientSolution(@PathVariable("type") String type) {
+        return solutionService.getClientSolution(type);
+    }
 }

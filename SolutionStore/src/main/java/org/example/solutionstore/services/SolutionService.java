@@ -66,5 +66,10 @@ public class SolutionService {
         return new ResponseEntity<>(types, HttpStatus.OK);
     }
 
+    public ResponseEntity<String> getClientSolution(String type) {
+        String solution = solutionRepository.getSolution(type.toUpperCase());
+        if (solution == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(solution, HttpStatus.OK);
     }
 }
