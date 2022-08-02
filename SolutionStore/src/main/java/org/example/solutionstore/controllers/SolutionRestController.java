@@ -36,6 +36,10 @@ public class SolutionRestController {
         return solutionService.deleteSolution(solutionId);
     }
 
+    @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Solution> saveSolution(@RequestBody Solution solution) {
+        return solutionService.saveSolution(solution);
+    }
 
     @RequestMapping(value = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Solution> updateSolution(@RequestBody Solution solution) {

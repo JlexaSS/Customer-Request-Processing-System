@@ -44,6 +44,12 @@ public class SolutionService {
         } else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    public ResponseEntity<Solution> saveSolution(Solution solution) {
+        if (solution == null || solutionRepository.existsByTypeOrTypename(solution.getType(), solution.getTypename()))
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        solutionRepository.save(solution);
+        return new ResponseEntity<>(solution, HttpStatus.OK);
     }
 
     public ResponseEntity<Solution> updateSolution(Solution solution) {
