@@ -6,6 +6,7 @@ import org.example.processingsystem.model.Client;
 import org.example.processingsystem.model.Request;
 import org.example.processingsystem.model.User;
 import org.example.processingsystem.repository.RequestRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -21,6 +22,9 @@ import java.util.Map;
 
 @Service
 public class RequestService {
+    @Value("${solutionstore.api.path}")
+    private String api;
+
     private final RequestRepository requestRepository;
 
     public RequestService(RequestRepository requestRepository) {
@@ -40,7 +44,7 @@ public class RequestService {
         HttpHeaders headers = new HttpHeaders();
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
-        return restTemplate.exchange("http://localhost:9000/api/solutions/solution/" + request.getType(), HttpMethod.GET, entity, String.class);
+        return restTemplate.exchange(api+"solution/" + request.getType(), HttpMethod.GET, entity, String.class);
     }
 
 }
