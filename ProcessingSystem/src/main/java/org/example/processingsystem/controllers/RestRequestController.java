@@ -4,6 +4,7 @@ import org.example.processingsystem.model.Request;
 import org.example.processingsystem.services.RequestService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,4 +38,8 @@ public class RestRequestController {
         return requestService.getAllRequest();
     }
 
+    @RequestMapping(value = "{request}/{status}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> getStatus (@PathVariable("request") Long requestId,@PathVariable("status") String statusEnums){
+        return requestService.changeStatus(requestId, statusEnums);
+    }
 }

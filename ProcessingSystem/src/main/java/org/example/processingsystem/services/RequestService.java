@@ -1,5 +1,6 @@
 package org.example.processingsystem.services;
 
+import org.example.processingsystem.enums.StatusEnums;
 import org.example.processingsystem.model.Request;
 import org.example.processingsystem.repository.RequestRepository;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,27 +28,39 @@ public class RequestService {
         this.requestRepository = requestRepository;
     }
 
-    public ResponseEntity<Map<String,String>> getTypes(){
+    public ResponseEntity<Map<String, String>> getTypes() {
         HttpHeaders headers = new HttpHeaders();
-        Map<String,String> body = new HashMap<>();
-        HttpEntity<Map<String,String>> entity= new HttpEntity<>(body, headers);
-        return new RestTemplate().exchange(api + "types/", HttpMethod.GET, entity, new ParameterizedTypeReference<>() {});
+        Map<String, String> body = new HashMap<>();
+        HttpEntity<Map<String, String>> entity = new HttpEntity<>(body, headers);
+        return new RestTemplate().exchange(api + "types/", HttpMethod.GET, entity, new ParameterizedTypeReference<>() {
+        });
     }
 
-    public ResponseEntity<String> addNewRequest(Request request){
-        if(request == null)
+    public ResponseEntity<String> addNewRequest(Request request) {
+        if (request == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         requestRepository.save(request);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
-        return new RestTemplate().exchange(api+"solution/" + request.getType(), HttpMethod.GET, entity, String.class);
+        return new RestTemplate().exchange(api + "solution/" + request.getType(), HttpMethod.GET, entity, String.class);
     }
 
-    public ResponseEntity<List<Request>> getAllRequest(){
+    public ResponseEntity<List<Request>> getAllRequest() {
         List<Request> requests = requestRepository.findAll();
         if (requests.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(requests, HttpStatus.OK);
     }
 
+    public ResponseEntity<String> changeStatus(Long requestId, String statusEnums) {
+        StatusEnums status = null;
+        try {
+            status = StatusEnums.valueOf(statusEnums.toUpperCase());
+        } catch (Exception e) {
+        }
+        if (status == null || requestRepository.updateStatus(status, requestId) != 1)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
 }
