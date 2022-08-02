@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/request/")
@@ -21,6 +22,10 @@ public class RestRequestController {
         this.requestService = requestService;
     }
 
+    @RequestMapping(value = "types/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String,String>> getTypes(){
+        return requestService.getTypes();
+    }
 
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> addNewRequest(@RequestBody @Valid Request request){
