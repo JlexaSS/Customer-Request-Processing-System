@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,6 +17,23 @@ public class SolutionService {
 
     public SolutionService(SolutionRepository solutionRepository) {
         this.solutionRepository = solutionRepository;
+    }
+
+    public ResponseEntity<Solution> getSolution(Long solutionId) {
+        if (solutionId == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        Optional<Solution> solutionOptional = solutionRepository.findById(solutionId);
+        if (solutionOptional.isPresent())
+            return new ResponseEntity<>(solutionOptional.get(), HttpStatus.OK);
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    public ResponseEntity<List<Solution>> getAllSolution() {
+        List<Solution> solutions = solutionRepository.findAll();
+        if (solutions.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(solutions, HttpStatus.OK);
     }
 
     public ResponseEntity<Solution> deleteSolution(Long solutionId) {

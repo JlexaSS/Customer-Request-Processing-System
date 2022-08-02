@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/solutions/")
@@ -20,6 +21,15 @@ public class SolutionRestController {
         this.solutionService = solutionService;
     }
 
+    @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Solution> getSolution(@PathVariable("id") Long solutionId) {
+        return solutionService.getSolution(solutionId);
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Solution>> getAllSolution() {
+        return solutionService.getAllSolution();
+    }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Solution> deleteSolution(@PathVariable("id") Long solutionId) {
