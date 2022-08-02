@@ -43,6 +43,6 @@ public class Request {
     private LocalDateTime date = LocalDateTime.now();
 
     @NonNull
-    private String status = StatusEnums.PROCESS.getStatus();
+    private StatusEnums status = StatusEnums.PROCESS;
 
 }

@@ -6,9 +6,11 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum StatusEnums {
-    PROCESS("В процессе"),
-    PROCESSED("Обработан"),
-    NOTPROCESSED("Не обработан");
+    PROCESS(1,"В процессе"),
+    PROCESSED(2,"Обработан"),
+    NOTPROCESSED(3,"Не обработан");
 
+
+    private final int id;
     private final String status;
 }
