@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/solutions/")
@@ -46,4 +47,8 @@ public class SolutionRestController {
         return solutionService.updateSolution(solution);
     }
 
+    @RequestMapping(value = "/types", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, String>> getTypes() {
+        return solutionService.getTypes();
+    }
 }
