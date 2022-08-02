@@ -6,7 +6,14 @@ import org.example.processingsystem.model.Client;
 import org.example.processingsystem.model.Request;
 import org.example.processingsystem.model.User;
 import org.example.processingsystem.repository.RequestRepository;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,10 +32,15 @@ public class RequestService {
         return new ObjectMapper().readValue(url, new TypeReference<Map<String, String>>() {});
     }
 
-    public String addNewRequest(Client client, User user, String type) throws IOException {
-        requestRepository.save(new Request(client, user, type));
-        URL url = new URL("http://localhost:9000/getsolution?type=" + type);
-        String res = new ObjectMapper().readValue(url, new TypeReference<String>() {});
-        return res;
+    public ResponseEntity<String> addNewRequest(Request request){
+        if(request == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        requestRepository.save(request);
+        HttpHeaders headers = new HttpHeaders();
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+        return restTemplate.exchange("http://localhost:9000/api/solutions/solution/" + request.getType(), HttpMethod.GET, entity, String.class);
     }
+
 }
