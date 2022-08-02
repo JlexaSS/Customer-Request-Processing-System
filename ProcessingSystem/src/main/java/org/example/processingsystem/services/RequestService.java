@@ -22,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -37,20 +38,25 @@ public class RequestService {
 
     public ResponseEntity<Map<String,String>> getTypes(){
         HttpHeaders headers = new HttpHeaders();
-
         Map<String,String> body = new HashMap<>();
         HttpEntity<Map<String,String>> entity= new HttpEntity<>(body, headers);
         return new RestTemplate().exchange(api + "types/", HttpMethod.GET, entity, new ParameterizedTypeReference<>() {});
     }
 
     public ResponseEntity<String> addNewRequest(Request request){
-        if(request == null){
+        if(request == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
         requestRepository.save(request);
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
         return new RestTemplate().exchange(api+"solution/" + request.getType(), HttpMethod.GET, entity, String.class);
+    }
+
+    public ResponseEntity<List<Request>> getAllRequest(){
+        List<Request> requests = requestRepository.findAll();
+        if (requests.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(requests, HttpStatus.OK);
     }
 
 }

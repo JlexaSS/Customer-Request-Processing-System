@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -30,6 +31,11 @@ public class RestRequestController {
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> addNewRequest(@RequestBody @Valid Request request){
         return requestService.addNewRequest(request);
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Request>> getAllRequest(){
+        return requestService.getAllRequest();
     }
 
 }
