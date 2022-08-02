@@ -5,6 +5,7 @@ import org.example.solutionstore.services.SolutionService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,12 @@ public class SolutionRestController {
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Solution> deleteSolution(@PathVariable("id") Long solutionId) {
         return solutionService.deleteSolution(solutionId);
+    }
+
+
+    @RequestMapping(value = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Solution> updateSolution(@RequestBody Solution solution) {
+        return solutionService.updateSolution(solution);
     }
 
 }

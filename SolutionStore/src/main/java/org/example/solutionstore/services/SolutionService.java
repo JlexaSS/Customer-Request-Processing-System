@@ -28,7 +28,18 @@ public class SolutionService {
     }
     }
 
+    public ResponseEntity<Solution> updateSolution(Solution solution) {
+        if (solution == null)
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        solutionRepository.save(solution);
+        return new ResponseEntity<>(solution, HttpStatus.OK);
+    }
+
+    public ResponseEntity<Map<String, String>> getTypes() {
         Map<String, String> types = solutionRepository.getTypes().stream().collect(Collectors.toMap(x -> x.split(",")[0], x -> x.split(",")[1]));
+        if (types.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(types, HttpStatus.OK);
     }
 
     }
