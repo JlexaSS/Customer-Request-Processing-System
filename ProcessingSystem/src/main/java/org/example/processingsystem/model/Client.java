@@ -1,5 +1,6 @@
 package org.example.processingsystem.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @Entity
 public class Client {
     @Id
