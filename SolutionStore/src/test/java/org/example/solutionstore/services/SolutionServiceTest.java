@@ -15,6 +15,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -40,6 +43,14 @@ class SolutionServiceTest {
 
     @Test
     void getAllSolution() {
+        List<Solution> solutionList = new ArrayList<>();
+        solutionList.add(new Solution((long)1,"TEST", "Проблема","Выполнить следующие действия"));
+        solutionList.add(new Solution((long)2,"ERROR", "Ошибка","Следуйте указаниям"));
+        when(solutionRepository.findAll()).thenReturn(solutionList);
+        ResponseEntity<List<Solution>> entity = solutionService.getAllSolution();
+        verify(solutionRepository, times(1)).findAll();
+        Assertions.assertTrue(CoreMatchers.is(entity.getStatusCodeValue()).matches(200));
+        Assertions.assertEquals(entity.getBody(), solutionList);
     }
 
     @Test
