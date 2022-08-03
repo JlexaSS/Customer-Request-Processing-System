@@ -1,7 +1,6 @@
 package org.example.solutionstore.services;
 
 
-import org.apache.el.parser.AstSetData;
 import org.example.solutionstore.model.Solution;
 import org.example.solutionstore.repository.SolutionRepository;
 import org.hamcrest.CoreMatchers;
@@ -75,6 +74,10 @@ class SolutionServiceTest {
 
     @Test
     void updateSolution() {
+        Solution solution = new Solution("TEST", "Проблема","Выполнить следующие действия");
+        ResponseEntity<Solution> entity = solutionService.saveSolution(solution);
+        Assertions.assertTrue(CoreMatchers.is(entity.getStatusCodeValue()).matches(200));
+        Mockito.verify(solutionRepository, Mockito.times(1)).save(solution);
     }
 
     @Test
