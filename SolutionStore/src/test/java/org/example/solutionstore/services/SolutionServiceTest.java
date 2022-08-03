@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -100,5 +99,12 @@ class SolutionServiceTest {
 
     @Test
     void getClientSolution() {
+        String type = "TEST";
+        String solution = "Выполните ряд действий";
+        when(solutionRepository.getSolution(type)).thenReturn(solution);
+        ResponseEntity<String> entity = solutionService.getClientSolution(type);
+        Assertions.assertTrue(CoreMatchers.is(entity.getStatusCodeValue()).matches(200));
+        Assertions.assertEquals(entity.getBody(), solution);
+        Mockito.verify(solutionRepository, Mockito.times(1)).getSolution(type);
     }
 }
