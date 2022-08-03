@@ -15,7 +15,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -82,6 +85,17 @@ class SolutionServiceTest {
 
     @Test
     void getTypes() {
+        List<String> typesList = new ArrayList<>();
+        typesList.add("PROBLEM,Проблема");
+        typesList.add("TEST,Тест");
+        Map<String, String> types = new HashMap<>();
+        types.put("PROBLEM","Проблема");
+        types.put("TEST","Тест");
+        when(solutionRepository.getTypes()).thenReturn(typesList);
+        ResponseEntity<Map<String,String>> entity = solutionService.getTypes();
+        Assertions.assertTrue(CoreMatchers.is(entity.getStatusCodeValue()).matches(200));
+        Assertions.assertEquals(entity.getBody(), types);
+        Mockito.verify(solutionRepository, Mockito.times(1)).getTypes();
     }
 
     @Test
