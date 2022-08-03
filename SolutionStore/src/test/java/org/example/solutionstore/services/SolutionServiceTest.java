@@ -30,6 +30,12 @@ class SolutionServiceTest {
 
     @Test
     void getSolution() {
+        Solution solution = new Solution((long)1,"TEST", "Проблема","Выполнить следующие действия");
+        when(solutionRepository.findById((long)1)).thenReturn(java.util.Optional.of(solution));
+        ResponseEntity<Solution> entity = solutionService.getSolution((long)1);
+        verify(solutionRepository, times(1)).findById((long)1);
+        Assertions.assertTrue(CoreMatchers.is(entity.getStatusCodeValue()).matches(200));
+        Assertions.assertEquals(entity.getBody(), solution);
     }
 
     @Test
