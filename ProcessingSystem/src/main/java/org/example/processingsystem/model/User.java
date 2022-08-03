@@ -1,5 +1,6 @@
 package org.example.processingsystem.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @Entity
 @Table(name = "usr")
 public class User {
