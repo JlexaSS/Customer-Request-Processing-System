@@ -4,6 +4,8 @@ package org.example.solutionstore.services;
 import org.example.solutionstore.model.Solution;
 import org.example.solutionstore.repository.SolutionRepository;
 import org.hamcrest.CoreMatchers;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -98,13 +100,15 @@ class SolutionServiceTest {
     }
 
     @Test
-    void getClientSolution() {
+    void getClientSolution() throws JSONException {
         String type = "TEST";
-        String solution = "Выполните ряд действий";
-        when(solutionRepository.getSolution(type)).thenReturn(solution);
+        String solutionText = "Выполните ряд действий";
+        JSONObject solution = new JSONObject();
+        solution.put("solution", solutionText);
+        when(solutionRepository.getSolution(type)).thenReturn(solutionText);
         ResponseEntity<String> entity = solutionService.getClientSolution(type);
         Assertions.assertTrue(CoreMatchers.is(entity.getStatusCodeValue()).matches(200));
-        Assertions.assertEquals(entity.getBody(), solution);
+        Assertions.assertEquals(entity.getBody(), solution.toString());
         Mockito.verify(solutionRepository, Mockito.times(1)).getSolution(type);
     }
 }
