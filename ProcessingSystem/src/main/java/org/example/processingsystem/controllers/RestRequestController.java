@@ -30,7 +30,8 @@ public class RestRequestController {
 
     @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> addNewRequest(@RequestBody @Valid Request request){
-        return requestService.addNewRequest(request);
+        requestService.addNewRequest(request);
+        return requestService.getClientSolution(request.getType());
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -39,7 +40,7 @@ public class RestRequestController {
     }
 
     @RequestMapping(value = "{request}/{status}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> getStatus (@PathVariable("request") Long requestId,@PathVariable("status") String statusEnums){
+    public ResponseEntity<String> changeStatus(@PathVariable("request") Long requestId, @PathVariable("status") String statusEnums){
         return requestService.changeStatus(requestId, statusEnums);
     }
 }
