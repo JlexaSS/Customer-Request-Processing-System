@@ -38,7 +38,13 @@ class RequestServiceTest {
     }
 
     @Test
-    void addNewRequest() {
+    void addNewRequest(){
+        User user = new User((long)1,"Иван", "Иванов", "ivan@ivanov.ru", "pass");
+        Client client = new Client((long)1,"Иван", "Иванов");
+        Request request = new Request((long)1, client, user, "TEST", LocalDateTime.now(), StatusEnums.PROCESS);
+        ResponseEntity entity = requestService.addNewRequest(request);
+        Mockito.verify(requestRepository, Mockito.times(1)).save(request);
+        Assertions.assertTrue(CoreMatchers.is(entity.getStatusCodeValue()).matches(200));
     }
 
     @Test
