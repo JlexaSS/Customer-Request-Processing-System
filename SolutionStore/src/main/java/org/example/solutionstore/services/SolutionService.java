@@ -1,7 +1,11 @@
 package org.example.solutionstore.services;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import org.apache.tomcat.util.json.JSONParser;
 import org.example.solutionstore.model.Solution;
 import org.example.solutionstore.repository.SolutionRepository;
+import org.json.JSONObject;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -70,6 +74,8 @@ public class SolutionService {
         String solution = solutionRepository.getSolution(type.toUpperCase());
         if (solution == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<>(solution, HttpStatus.OK);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("solution", solution);
+        return new ResponseEntity<>(jsonObject.toString(), HttpStatus.OK);
     }
 }
