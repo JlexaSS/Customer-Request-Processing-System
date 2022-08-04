@@ -1,11 +1,8 @@
 package org.example.solutionstore.services;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import org.apache.tomcat.util.json.JSONParser;
 import org.example.solutionstore.model.Solution;
 import org.example.solutionstore.repository.SolutionRepository;
 import org.json.JSONObject;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
