@@ -40,9 +40,14 @@ public class RequestService {
         if (request == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         requestRepository.save(request);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    public ResponseEntity<String> getClientSolution(String type){
         HttpHeaders headers = new HttpHeaders();
         HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
-        return new RestTemplate().exchange(api + "solution/" + request.getType(), HttpMethod.GET, entity, String.class);
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.exchange(api + "solution/" + type, HttpMethod.GET, entity, String.class);
     }
 
     public ResponseEntity<List<Request>> getAllRequest() {
