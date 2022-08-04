@@ -9,6 +9,7 @@ import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -58,5 +59,11 @@ class RequestServiceTest {
 
     @Test
     void changeStatus() {
+        StatusEnums statusEnums = StatusEnums.PROCESS;
+        String status = "PROCESS";
+        when(requestRepository.updateStatus(statusEnums,(long)1)).thenReturn(1);
+        ResponseEntity<String> entity = requestService.changeStatus((long) 1, status);
+        verify(requestRepository, times(1)).updateStatus(statusEnums, (long) 1);
+        Assertions.assertTrue(CoreMatchers.is(entity.getStatusCodeValue()).matches(200));
     }
 }
